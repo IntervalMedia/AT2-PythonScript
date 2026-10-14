@@ -1,0 +1,8 @@
+testFunctionsUseCamelCaseNames (tests.test_at2.AT2Tests.testFunctionsUseCamelCaseNames) ... ok
+testGetMACAddressUsesExpectedFormat (tests.test_at2.AT2Tests.testGetMACAddressUsesExpectedFormat) ... ok
+testSanitizeRemovesLineBreaksAndWhitespace (tests.test_at2.AT2Tests.testSanitizeRemovesLineBreaksAndWhitespace) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK

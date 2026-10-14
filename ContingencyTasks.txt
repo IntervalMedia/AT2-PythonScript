@@ -1,0 +1,25 @@
+Contingency Task 1: Controlling and incorporating minor client changes after coding
+
+1. Receive and document the change request in the approved organisational format (ticket, change form, or email record), including scope, reason, and requested deadline.
+2. Review the requested changes against project requirements, coding standards, and organisational change-control procedures to confirm they are minor and compliant.
+3. Assess impact on functionality, timeline, risks, testing effort, and related documentation.
+4. Obtain required approval from the relevant authority (project lead/client representative/change approver) before modifying code.
+5. Update the project artefacts (requirements notes, task board, and version-control branch/task reference) to maintain traceability.
+6. Implement changes in a controlled way using version control practices (separate branch, descriptive commits, and peer review if required by policy).
+7. Run regression tests and targeted tests for the new changes to ensure existing features are not broken.
+8. Update user/deployment documentation if behaviour or instructions changed.
+9. Present the updated build to the client for confirmation and record sign-off.
+10. Merge and release following standard organisational release and backup procedures.
+
+Contingency Task 2: Migrating deployment to a newer IDE version after script completion
+
+1. Record the new requirement as a formal change request and confirm business justification for using the latest IDE version.
+2. Check organisational policy on tool/version upgrades, including approval, security, and compatibility requirements.
+3. Review release notes for the new IDE version to identify changes affecting Python interpreter settings, plugins, project configuration, build/run settings, and debugging behaviour.
+4. Create a controlled test environment (not production) using the new IDE version.
+5. Import the existing project and verify dependencies, interpreter path, virtual environment, and package versions are consistent.
+6. Execute the full script and test suite to detect compatibility issues.
+7. Resolve any issues found (deprecated settings, plugin conflicts, path/config differences), while keeping code changes minimal and documented.
+8. Re-test and compare behaviour with the original baseline to ensure no unintended functional changes.
+9. Update internal documentation (setup guide, supported IDE version, and deployment instructions).
+10. Seek final approval, then deploy using the updated IDE workflow in line with organisational release and rollback procedures.
