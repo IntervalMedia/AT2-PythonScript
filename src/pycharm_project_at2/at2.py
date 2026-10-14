@@ -11,7 +11,10 @@ import uuid
 
 def sanitize(value):
     # Sanitize data to prevent CSV injection and formatting errors.
-    return str(value).replace("\n", " ").replace("\r", "").strip()
+    cleanValue = str(value).replace("\n", " ").replace("\r", "").strip()
+    if cleanValue.startswith(("=", "+", "-", "@")):
+        return f"'{cleanValue}"
+    return cleanValue
 
 
 def getComputerName():
@@ -77,7 +80,7 @@ def getInternetSpeed():
     try:
         startTime = time.time()
         request = urllib.request.Request(
-            "http://speedtest.ftp.otenet.gr/files/test1Mb.db",
+            "https://speedtest.ftp.otenet.gr/files/test1Mb.db",
             method="GET",
         )
         with urllib.request.urlopen(request, timeout=5) as response:
@@ -120,9 +123,8 @@ def getActivePorts():
                     port = parts[4].split(":")[-1]
                     if port.isdigit():
                         ports.add(port)
-    except Exception:
-        # Return any ports collected before the command failed.
-        pass
+    except Exception as error:
+        print(f"[WARNING] Active port collection failed: {error}")
 
     return ";".join(sorted(ports, key=int))
 
@@ -190,6 +192,7 @@ def main():
                         rows.append(row)
         except Exception as error:
             print(f"Error reading CSV: {error}")
+            return
 
     if not computerFound:
         print(f"\n[INFO] New computer detected. Adding {currentData[0]} to CSV.")

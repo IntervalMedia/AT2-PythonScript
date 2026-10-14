@@ -3,23 +3,15 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="ALL" />
   </component>
+  <component name="BackgroundAgentGlobalSettings">
+    <option name="selectedModelId" value="auto" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ce554df-ad99-4d3c-8d90-79835e126428" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pyProjectModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pycharm-project-at2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AT2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AT2_QUESTIONNAIRE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evidence/basic-language-elements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evidence/block-comments.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evidence/selection-and-iteration.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/psuedocode.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_at2.py" afterDir="false" />
+    <list default="true" id="5ce554df-ad99-4d3c-8d90-79835e126428" name="Changes" comment="add asset audit script and documentation&#10;&#10;- Implemented a script to collect and audit system information from Windows and Linux computers, saving results to assets_audit.csv.&#10;- Added tests for key functions and ensured compliance with project requirements.&#10;- Created documentation outlining the project structure, testing process, and pseudocode for the algorithm.">
+      <change afterPath="$PROJECT_DIR$/src/pycharm_project_at2/at2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AT2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_at2.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_at2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,61 +42,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.865733298399919" />
-      <entry key="MS500" value="3.8625245088932187" />
-      <entry key="S2" value="7.339514580483314" />
-      <entry key="S5" value="13.984608904362377" />
-      <entry key="S10" value="24.47109660573282" />
-      <entry key="S30" value="44.175982698866854" />
-      <entry key="S60" value="60.77297836881186" />
-      <entry key="M2" value="84.75860298003442" />
-      <entry key="M5" value="119.48179631757591" />
-      <entry key="M10" value="142.93440173020767" />
-      <entry key="M15" value="154.15886358631826" />
-      <entry key="M30" value="171.96493813611534" />
-      <entry key="H1" value="195.12987240945793" />
-      <entry key="H2" value="220.85933271857027" />
-      <entry key="H4" value="241.3573332592642" />
-      <entry key="D1" value="264.52516179839375" />
-      <entry key="W1" value="269.19860678124417" />
+      <entry key="MS100" value="9.45350626627358E-16" />
+      <entry key="MS500" value="9.888230540532155E-4" />
+      <entry key="S2" value="0.17732949700058362" />
+      <entry key="S5" value="0.5037486328772743" />
+      <entry key="S10" value="0.7634444667552159" />
+      <entry key="S30" value="1.2735695470313053" />
+      <entry key="S60" value="1.5739498027730496" />
+      <entry key="M2" value="1.8657869015893143" />
+      <entry key="M5" value="2.385972069452712" />
+      <entry key="M10" value="6.257899506530324" />
+      <entry key="M15" value="16.124725043151674" />
+      <entry key="M30" value="53.57638435488221" />
+      <entry key="H1" value="108.9047894540653" />
+      <entry key="H2" value="165.72993860231082" />
+      <entry key="H4" value="210.17993918874967" />
+      <entry key="D1" value="260.87915108124184" />
+      <entry key="W1" value="271.22185362566916" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="4.1966580626761967E-94" />
-      <entry key="S2" value="4.526118250459897E-24" />
-      <entry key="S5" value="4.5950512387068076E-10" />
-      <entry key="S10" value="2.1436070625887892E-5" />
-      <entry key="S30" value="0.02778447340295407" />
-      <entry key="S60" value="0.1692112989406754" />
-      <entry key="M2" value="0.4829570161464954" />
-      <entry key="M5" value="1.5271816544304373" />
-      <entry key="M10" value="2.836121707641614" />
-      <entry key="M15" value="3.5922475803583223" />
-      <entry key="M30" value="4.613216725832258" />
-      <entry key="H1" value="5.253177923122918" />
-      <entry key="H2" value="5.612122639288204" />
-      <entry key="H4" value="5.802295850108939" />
-      <entry key="D1" value="5.966513178322126" />
-      <entry key="W1" value="5.9952028636133425" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0000000053896612" />
+      <entry key="M5" value="1.0010068201267457" />
+      <entry key="M10" value="1.072820802246438" />
+      <entry key="M15" value="1.3126463222852127" />
+      <entry key="M30" value="2.360966357208388" />
+      <entry key="H1" value="3.8532766103960054" />
+      <entry key="H2" value="5.136071481600569" />
+      <entry key="H4" value="5.98115791894349" />
+      <entry key="D1" value="6.816686772766866" />
+      <entry key="W1" value="6.973461054696966" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.8174855315373302" />
-      <entry key="MS500" value="3.840808898522382" />
-      <entry key="S2" value="7.328290926918118" />
-      <entry key="S5" value="13.97591017047898" />
-      <entry key="S10" value="24.463525135707883" />
-      <entry key="S30" value="44.195437314345384" />
-      <entry key="S60" value="60.92736215358452" />
-      <entry key="M2" value="85.22338054359457" />
-      <entry key="M5" value="120.99071076921135" />
-      <entry key="M10" value="145.75530974561946" />
-      <entry key="M15" value="157.7386999303047" />
-      <entry key="M30" value="176.5704272194292" />
-      <entry key="H1" value="200.37869585246605" />
-      <entry key="H2" value="226.46913194182008" />
-      <entry key="H4" value="247.1584263138531" />
-      <entry key="D1" value="270.49146828194307" />
-      <entry key="W1" value="275.1937799564047" />
+      <entry key="MS100" value="3.155158277923562E-4" />
+      <entry key="MS500" value="0.19945125471998262" />
+      <entry key="S2" value="0.730445075359655" />
+      <entry key="S5" value="1.1834067307172298" />
+      <entry key="S10" value="1.5521180863764754" />
+      <entry key="S30" value="2.1867367016981163" />
+      <entry key="S60" value="2.5280442030757535" />
+      <entry key="M2" value="2.8421633737916543" />
+      <entry key="M5" value="3.3773423177287314" />
+      <entry key="M10" value="7.325485492525345" />
+      <entry key="M15" value="17.43305428381375" />
+      <entry key="M30" value="55.93344868249085" />
+      <entry key="H1" value="112.75488881017523" />
+      <entry key="H2" value="170.86389145142394" />
+      <entry key="H4" value="216.15986131856303" />
+      <entry key="D1" value="267.69560247215725" />
+      <entry key="W1" value="278.1952802597331" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -112,6 +104,21 @@
   "fromUser": false
 }]]></component>
   <component name="ProjectId" id="3KfbLPIJePSofzMyb5R5SMoePxs" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -122,6 +129,7 @@
     "Python tests.Python tests in test_at2.py.executor": "Run",
     "Python.AT2.executor": "Run",
     "Python.at2.executor": "Run",
+    "Python.main.executor": "Run",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -138,6 +146,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pycharm_project_at2" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -152,8 +165,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1791951512698</updated>
-      <workItem from="1791951513792" duration="4123000" />
+      <workItem from="1791951513792" duration="6342000" />
     </task>
+    <task id="LOCAL-00001" summary="add asset audit script and documentation&#10;&#10;- Implemented a script to collect and audit system information from Windows and Linux computers, saving results to assets_audit.csv.&#10;- Added tests for key functions and ensured compliance with project requirements.&#10;- Created documentation outlining the project structure, testing process, and pseudocode for the algorithm.">
+      <option name="closed" value="true" />
+      <created>1791960182789</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1791960182789</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,8 +192,13 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add asset audit script and documentation&#10;&#10;- Implemented a script to collect and audit system information from Windows and Linux computers, saving results to assets_audit.csv.&#10;- Added tests for key functions and ensured compliance with project requirements.&#10;- Created documentation outlining the project structure, testing process, and pseudocode for the algorithm." />
+    <option name="LAST_COMMIT_MESSAGE" value="add asset audit script and documentation&#10;&#10;- Implemented a script to collect and audit system information from Windows and Linux computers, saving results to assets_audit.csv.&#10;- Added tests for key functions and ensured compliance with project requirements.&#10;- Created documentation outlining the project structure, testing process, and pseudocode for the algorithm." />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PycharmProjectAT2$at2.coverage" NAME="at2 Coverage Results" MODIFIED="1791952605973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PycharmProjectAT2$main.coverage" NAME="main Coverage Results" MODIFIED="1791963163908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/pycharm_project_at2" />
+    <SUITE FILE_PATH="coverage/PycharmProjectAT2$at2.coverage" NAME="at2 Coverage Results" MODIFIED="1791962900569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/pycharm_project_at2" />
     <SUITE FILE_PATH="coverage/PycharmProjectAT2$AT2.coverage" NAME="AT2 Coverage Results" MODIFIED="1791952046950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PycharmProjectAT2$.coverage" NAME=" Coverage Results" MODIFIED="1791958716185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
