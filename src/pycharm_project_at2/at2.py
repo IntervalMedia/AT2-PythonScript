@@ -75,28 +75,73 @@ def getSystemTime():
     return datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
 
+def measureDownloadSpeed(testUrl):
+    startTime = time.time()
+    request = urllib.request.Request(
+        testUrl,
+        headers={"User-Agent": "Mozilla/5.0"},
+        method="GET",
+    )
+    with urllib.request.urlopen(request, timeout=5) as response:
+        # Read 512 KB from the test file.
+        data = response.read(1024 * 512)
+    endTime = time.time()
+
+    duration = endTime - startTime
+    if duration == 0:
+        return "Unknown"
+
+    speedBitsPerSecond = (len(data) * 8) / duration
+    speedMegabitsPerSecond = speedBitsPerSecond / 1_000_000
+    return f"{int(speedMegabitsPerSecond)}Mb/s"
+
+
 def getInternetSpeed():
     # Estimate download speed without third-party tools.
-    try:
-        startTime = time.time()
-        request = urllib.request.Request(
-            "https://speedtest.ftp.otenet.gr/files/test1Mb.db",
-            method="GET",
-        )
-        with urllib.request.urlopen(request, timeout=5) as response:
-            # Read 512 KB from the test file.
-            data = response.read(1024 * 512)
-        endTime = time.time()
+    testUrls = [
+        "https://speedtest.ftp.otenet.gr/files/test1Mb.db",
+        "https://speed.cloudflare.com/__down?bytes=1000000",
+    ]
+    for testUrl in testUrls:
+        try:
+            return measureDownloadSpeed(testUrl)
+        except Exception:
+            continue
 
-        duration = endTime - startTime
-        if duration == 0:
-            return "Unknown"
+    return "Unknown (Offline)"
 
-        speedBitsPerSecond = (len(data) * 8) / duration
-        speedMegabitsPerSecond = speedBitsPerSecond / 1_000_000
-        return f"{int(speedMegabitsPerSecond)}Mb/s"
-    except Exception:
-        return "Unknown (Offline)"
+
+def extractPortFromAddress(addressValue):
+    cleanAddress = addressValue.strip().strip("[]")
+    if ":" not in cleanAddress:
+        return None
+
+    port = cleanAddress.rsplit(":", 1)[-1]
+    if "%" in port:
+        port = port.split("%", 1)[0]
+
+    if port.isdigit():
+        return port
+    return None
+
+
+def parseListeningPorts(commandOutput):
+    ports = set()
+
+    for line in commandOutput.split("\n"):
+        if not line.strip():
+            continue
+        if line.startswith("Netid") or line.startswith("Proto"):
+            continue
+
+        parts = line.split()
+        for part in parts:
+            port = extractPortFromAddress(part)
+            if port:
+                ports.add(port)
+                break
+
+    return ports
 
 
 def getActivePorts():
@@ -116,13 +161,18 @@ def getActivePorts():
                             ports.add(port)
 
         if operatingSystem == "Linux":
-            output = subprocess.check_output(["ss", "-lntu"]).decode()
-            for line in output.split("\n")[1:]:
-                parts = line.split()
-                if len(parts) > 4:
-                    port = parts[4].split(":")[-1]
-                    if port.isdigit():
-                        ports.add(port)
+            linuxCommands = [["ss", "-lntu"], ["netstat", "-lntu"]]
+            lastError = None
+            for command in linuxCommands:
+                try:
+                    output = subprocess.check_output(command).decode()
+                    ports.update(parseListeningPorts(output))
+                    if ports:
+                        break
+                except Exception as error:
+                    lastError = error
+            if not ports and lastError is not None:
+                raise lastError
     except Exception as error:
         print(f"[WARNING] Active port collection failed: {error}")
 

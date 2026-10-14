@@ -2,12 +2,20 @@ import ast
 import contextlib
 import io
 import os
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+SOURCE_ROOT = PROJECT_ROOT / "src"
+if str(SOURCE_ROOT) not in sys.path:
+    sys.path.insert(0, str(SOURCE_ROOT))
+
 from pycharm_project_at2 import at2
+
+MODULE_PATH = "pycharm_project_at2.at2"
 
 
 class AT2Tests(unittest.TestCase):
@@ -20,13 +28,13 @@ class AT2Tests(unittest.TestCase):
         self.assertEqual(at2.sanitize("-1"), "'-1")
         self.assertEqual(at2.sanitize("@value"), "'@value")
 
-    @patch("at2.uuid.getnode", return_value=0xAABBCCDDEEFF)
+    @patch(f"{MODULE_PATH}.uuid.getnode", return_value=0xAABBCCDDEEFF)
     def testGetMACAddressUsesExpectedFormat(self, mockGetNode):
         self.assertEqual(at2.getMACAddress(), "AA-BB-CC-DD-EE-FF")
         mockGetNode.assert_called_once_with()
 
-    @patch("at2.urllib.request.urlopen")
-    @patch("at2.time.time", side_effect=[100.0, 101.0])
+    @patch(f"{MODULE_PATH}.urllib.request.urlopen")
+    @patch(f"{MODULE_PATH}.time.time", side_effect=[100.0, 101.0])
     def testGetInternetSpeedUsesHttpsRequest(self, mockTime, mockUrlOpen):
         class _FakeResponse:
             def __enter__(self):
@@ -45,8 +53,8 @@ class AT2Tests(unittest.TestCase):
         requestArgument = mockUrlOpen.call_args[0][0]
         self.assertTrue(requestArgument.full_url.startswith("https://"))
 
-    @patch("at2.subprocess.check_output", side_effect=RuntimeError("netstat error"))
-    @patch("at2.platform.system", return_value="Linux")
+    @patch(f"{MODULE_PATH}.subprocess.check_output", side_effect=RuntimeError("netstat error"))
+    @patch(f"{MODULE_PATH}.platform.system", return_value="Linux")
     def testGetActivePortsReportsCollectionFailure(self, mockSystem, mockCheckOutput):
         capturedOutput = io.StringIO()
         with contextlib.redirect_stdout(capturedOutput):
@@ -55,14 +63,14 @@ class AT2Tests(unittest.TestCase):
         self.assertEqual(result, "")
         self.assertIn("Active port collection failed", capturedOutput.getvalue())
 
-    @patch("at2.getActivePorts", return_value="80;443")
-    @patch("at2.getInternetSpeed", return_value="25Mb/s")
-    @patch("at2.getSystemTime", return_value="01/01/2026 09:00:00")
-    @patch("at2.getOS", return_value="Linux 6")
-    @patch("at2.getProcessor", return_value="CPU X")
-    @patch("at2.getMACAddress", return_value="AA-BB-CC-DD-EE-FF")
-    @patch("at2.getIPAddress", return_value="192.168.1.50")
-    @patch("at2.getComputerName", return_value="PC-TEST")
+    @patch(f"{MODULE_PATH}.getActivePorts", return_value="80;443")
+    @patch(f"{MODULE_PATH}.getInternetSpeed", return_value="25Mb/s")
+    @patch(f"{MODULE_PATH}.getSystemTime", return_value="01/01/2026 09:00:00")
+    @patch(f"{MODULE_PATH}.getOS", return_value="Linux 6")
+    @patch(f"{MODULE_PATH}.getProcessor", return_value="CPU X")
+    @patch(f"{MODULE_PATH}.getMACAddress", return_value="AA-BB-CC-DD-EE-FF")
+    @patch(f"{MODULE_PATH}.getIPAddress", return_value="192.168.1.50")
+    @patch(f"{MODULE_PATH}.getComputerName", return_value="PC-TEST")
     def testMainStopsAfterCsvReadFailure(
         self,
         mockComputer,
@@ -94,7 +102,7 @@ class AT2Tests(unittest.TestCase):
             os.chdir(previousDirectory)
 
     def testFunctionsUseCamelCaseNames(self):
-        sourceCode = Path("at2.py").read_text(encoding="utf-8")
+        sourceCode = Path("src/pycharm_project_at2/at2.py").read_text(encoding="utf-8")
         syntaxTree = ast.parse(sourceCode)
         functionNames = [
             node.name
@@ -105,6 +113,41 @@ class AT2Tests(unittest.TestCase):
         invalidNames = [name for name in functionNames if "_" in name]
 
         self.assertEqual(invalidNames, [])
+
+    @patch(f"{MODULE_PATH}.urllib.request.urlopen")
+    @patch(f"{MODULE_PATH}.time.time", side_effect=[100.0, 101.0, 102.0])
+    def testGetInternetSpeedFallsBackToSecondUrl(self, mockTime, mockUrlOpen):
+        class _FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, excType, exc, tb):
+                return False
+
+            def read(self, _size):
+                return b"x" * (1024 * 512)
+
+        mockUrlOpen.side_effect = [OSError("primary failed"), _FakeResponse()]
+
+        result = at2.getInternetSpeed()
+
+        self.assertEqual(result, "4Mb/s")
+        self.assertEqual(mockUrlOpen.call_count, 2)
+
+    @patch(f"{MODULE_PATH}.platform.system", return_value="Linux")
+    @patch(f"{MODULE_PATH}.subprocess.check_output")
+    def testGetActivePortsFallsBackToNetstatOnLinux(self, mockCheckOutput, mockSystem):
+        ssError = FileNotFoundError("ss not found")
+        netstatOutput = (
+            "Proto Recv-Q Send-Q Local Address           Foreign Address         State\n"
+            "tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN\n"
+            "tcp6       0      0 :::443                  :::*                    LISTEN\n"
+        ).encode("utf-8")
+        mockCheckOutput.side_effect = [ssError, netstatOutput]
+
+        result = at2.getActivePorts()
+
+        self.assertEqual(result, "22;443")
 
 
 if __name__ == "__main__":
