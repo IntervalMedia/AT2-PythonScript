@@ -1,0 +1,8 @@
+PASS: Create missing audit file
+PASS: Append new computer and retain other record
+PASS: Timestamp only change does not warn
+PASS: Changed IP warns and replaces record
+PASS: Blank row is skipped
+PASS: Duplicate matching rows remain duplicated
+PASS: Malformed unrelated row is preserved
+Checks use mocked computer data and temporary CSV files; they are not deployment evidence.
