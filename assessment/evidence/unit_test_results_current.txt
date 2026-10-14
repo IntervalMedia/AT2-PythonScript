@@ -1,0 +1,39 @@
+testBlankCollectedNameDoesNotCreateAnAudit (tests.test_approved_changes.AuditCSVTests.testBlankCollectedNameDoesNotCreateAnAudit) ... ok
+testChangedConfigurationReplacesSavedRecord (tests.test_approved_changes.AuditCSVTests.testChangedConfigurationReplacesSavedRecord) ... ok
+testDuplicateNamesKeepOneRowPerComputer (tests.test_approved_changes.AuditCSVTests.testDuplicateNamesKeepOneRowPerComputer) ... ok
+testFirstAuditCreatesCSVWithAtomicReplacement (tests.test_approved_changes.AuditCSVTests.testFirstAuditCreatesCSVWithAtomicReplacement) ... ok
+testHeaderOnlyAuditAcceptsNewComputer (tests.test_approved_changes.AuditCSVTests.testHeaderOnlyAuditAcceptsNewComputer) ... ok
+testInvalidCSVIsReportedAndPreserved (tests.test_approved_changes.AuditCSVTests.testInvalidCSVIsReportedAndPreserved) ... ok
+testPartialWriteFailureDoesNotReplaceOriginal (tests.test_approved_changes.AuditCSVTests.testPartialWriteFailureDoesNotReplaceOriginal) ... ok
+testReplaceFailurePreservesOriginalAndRemovesTemporaryFile (tests.test_approved_changes.AuditCSVTests.testReplaceFailurePreservesOriginalAndRemovesTemporaryFile) ... ok
+testReplacementUsesCompleteClosedTemporaryFileInSameDirectory (tests.test_approved_changes.AuditCSVTests.testReplacementUsesCompleteClosedTemporaryFileInSameDirectory) ... ok
+testRetainedRowsAreSanitisedAndBlankLinesAreSkipped (tests.test_approved_changes.AuditCSVTests.testRetainedRowsAreSanitisedAndBlankLinesAreSkipped) ... ok
+testSyncFailureDoesNotReplaceOriginal (tests.test_approved_changes.AuditCSVTests.testSyncFailureDoesNotReplaceOriginal) ... ok
+testBothIPLookupsFailWithWarningAndUnavailableValue (tests.test_approved_changes.SystemCollectorTests.testBothIPLookupsFailWithWarningAndUnavailableValue) ... ok
+testGenericProcessorFailureReturnsUnknown (tests.test_approved_changes.SystemCollectorTests.testGenericProcessorFailureReturnsUnknown) ... ok
+testHostnameResolutionIsUsedWhenPrimaryIPFails (tests.test_approved_changes.SystemCollectorTests.testHostnameResolutionIsUsedWhenPrimaryIPFails) ... ok
+testLinuxGenericProcessorTimeoutReturnsUnknown (tests.test_approved_changes.SystemCollectorTests.testLinuxGenericProcessorTimeoutReturnsUnknown) ... ok
+testLinuxPortCommandTimeoutFallsBackToListeningTCPNetstat (tests.test_approved_changes.SystemCollectorTests.testLinuxPortCommandTimeoutFallsBackToListeningTCPNetstat) ... ok
+testLoopbackAndUnspecifiedAddressesAreUnavailable (tests.test_approved_changes.SystemCollectorTests.testLoopbackAndUnspecifiedAddressesAreUnavailable) ... ok
+testMissingProcessorModelsReturnUnknown (tests.test_approved_changes.SystemCollectorTests.testMissingProcessorModelsReturnUnknown) ... ok
+testPrimaryIPUsesSocketAddress (tests.test_approved_changes.SystemCollectorTests.testPrimaryIPUsesSocketAddress) ... ok
+testProcessorCommandFailureFallsBackToGenericModel (tests.test_approved_changes.SystemCollectorTests.testProcessorCommandFailureFallsBackToGenericModel) ... ok
+testProcessorCommandsReadTheirModelWithATimeout (tests.test_approved_changes.SystemCollectorTests.testProcessorCommandsReadTheirModelWithATimeout) ... ok
+testSuccessfulEmptyLinuxPortOutputDoesNotRunFallback (tests.test_approved_changes.SystemCollectorTests.testSuccessfulEmptyLinuxPortOutputDoesNotRunFallback) ... ok
+testWindowsAndLinuxSaveTheSameListeningTCPPorts (tests.test_approved_changes.SystemCollectorTests.testWindowsAndLinuxSaveTheSameListeningTCPPorts) ... ok
+testWindowsPortTimeoutWarnsAndReturnsEmptyField (tests.test_approved_changes.SystemCollectorTests.testWindowsPortTimeoutWarnsAndReturnsEmptyField) ... ok
+testWindowsPowerShellTimeoutUsesLocalTCPListenersFromNetstat (tests.test_approved_changes.SystemCollectorTests.testWindowsPowerShellTimeoutUsesLocalTCPListenersFromNetstat) ... ok
+testFunctionsUseCamelCaseNames (tests.test_at2.AT2Tests.testFunctionsUseCamelCaseNames) ... ok
+testGetActivePortsFallsBackToNetstatOnLinux (tests.test_at2.AT2Tests.testGetActivePortsFallsBackToNetstatOnLinux) ... ok
+testGetActivePortsReportsCollectionFailure (tests.test_at2.AT2Tests.testGetActivePortsReportsCollectionFailure) ... ok
+testGetInternetSpeedFallsBackToSecondUrl (tests.test_at2.AT2Tests.testGetInternetSpeedFallsBackToSecondUrl) ... ok
+testGetInternetSpeedUsesHttpsRequest (tests.test_at2.AT2Tests.testGetInternetSpeedUsesHttpsRequest) ... ok
+testGetMACAddressUsesExpectedFormat (tests.test_at2.AT2Tests.testGetMACAddressUsesExpectedFormat) ... ok
+testMainStopsAfterCsvReadFailure (tests.test_at2.AT2Tests.testMainStopsAfterCsvReadFailure) ... ok
+testSanitizePreventsSpreadsheetFormulaInjection (tests.test_at2.AT2Tests.testSanitizePreventsSpreadsheetFormulaInjection) ... ok
+testSanitizeRemovesLineBreaksAndWhitespace (tests.test_at2.AT2Tests.testSanitizeRemovesLineBreaksAndWhitespace) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.027s
+
+OK
