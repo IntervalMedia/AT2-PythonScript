@@ -1,0 +1,32 @@
+at2.py — selection and iteration
+
+if fileExists:
+    try:
+        with open(csvFile, "r", newline="", encoding="utf-8") as csvInput:
+            reader = csv.reader(csvInput)
+            next(reader, None)
+
+            for row in reader:
+                if not row:
+                    continue
+
+                if row[0] == currentData[0]:
+                    computerFound = True
+                    previousInformation = row[1:5] + row[6:]
+                    currentInformation = currentData[1:5] + currentData[6:]
+
+                    if previousInformation != currentInformation:
+                        print(
+                            f"\n[WARNING] Information for {row[0]} is "
+                            "already present in the CSV file but differs "
+                            "from the current scan. Data updated."
+                        )
+                    else:
+                        print(
+                            f"\n[INFO] Computer {row[0]} already exists "
+                            "in the CSV. No configuration changes detected."
+                        )
+
+                    rows.append(currentData)
+                else:
+                    rows.append(row)

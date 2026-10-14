@@ -1,0 +1,21 @@
+at2.py — block comments
+
+def getIPAddress():
+    try:
+        # Connect to an external address to determine the primary routable IP.
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as networkSocket:
+            networkSocket.connect(("8.8.8.8", 80))
+            return networkSocket.getsockname()[0]
+    except Exception:
+        # Fall back to local hostname resolution.
+        return socket.gethostbyname(platform.node())
+
+
+def getSystemTime():
+    # Format the time to display dd/mm/yyyy hh:mm:ss.
+    return datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+
+def getActivePorts():
+    # Retrieve listening ports and separate them with semicolons.
+    ports = set()

@@ -1,0 +1,24 @@
+at2.py — basic language elements
+
+csvFile = "assets_audit.csv"
+headers = [
+    "Computer Name",
+    "IP address",
+    "MAC address",
+    "Processor Model",
+    "Operation System",
+    "System time",
+    "Internet connection speed",
+    "Active ports",
+]
+
+currentData = [
+    sanitize(getComputerName()),
+    sanitize(getIPAddress()),
+    sanitize(getMACAddress()),
+    sanitize(getProcessor()),
+    sanitize(getOS()),
+    sanitize(getSystemTime()),
+    sanitize(getInternetSpeed()),
+    sanitize(getActivePorts()),
+]
